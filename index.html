@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concert Hall Types: how shape changes sound</title>
+<style>
+:root{--bg:#e9ede8;--ink:#1a2420;--mute:#55635b;--acc:#5b2a54;--brass:#8a6d22;--line:#bcc6bd;--tint:#dde4dc;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1f1d;--ink:#e6ece7;--mute:#9fb0a5;--acc:#e0a8d6;--brass:#d6b863;--line:#38443e;--tint:#242c28;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:clamp(16px,1.8vw,21px)/1.55 "Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+.slide{display:none;height:100%;padding:6vh 7vw 15vh;overflow:auto}
+.slide.on{display:block}
+.slide::after{content:"Wiki: " attr(data-wiki) "; sources: " attr(data-sources);position:fixed;left:7vw;right:9rem;bottom:3.2vh;font:.62em/1.3 system-ui,sans-serif;color:var(--mute)}
+h1,h2{color:var(--acc);line-height:1.12;margin:0 0 .55em;font-weight:700}
+h1{font-size:2.7em;max-width:16em}h2{font-size:1.9em}
+.big{font-size:1.3em}
+ul{padding-left:1.1em;margin:.3em 0;max-width:38em}li{margin:.45em 0}
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:4vw;align-items:start}
+.four{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2vw;margin:1em 0}
+.four div{border-top:3px solid var(--brass);padding-top:.5em}
+.four h3{margin:.2em 0;font-size:1.15em;color:var(--acc)}
+.four p{margin:.3em 0;font-size:.9em}
+.plan{width:100%;max-width:230px;color:var(--brass);display:block}
+figure{margin:0}figcaption{font:.7em/1.3 system-ui,sans-serif;color:var(--mute);margin-top:.4em}
+.note{border-left:4px solid var(--brass);padding:.2em 1em;color:var(--mute);margin:1em 0;max-width:40em}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88em}
+th,td{border-bottom:1px solid var(--line);padding:.5em .7em;text-align:left;vertical-align:top}
+th{color:var(--acc)}
+.key{columns:2;column-gap:3vw;font-size:.72em;line-height:1.4;max-width:60em}
+nav{position:fixed;right:5vw;bottom:2.2vh;display:flex;gap:.6em;align-items:center;font:.75em system-ui,sans-serif}
+button{font:inherit;color:var(--ink);background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:.35em .9em;cursor:pointer}
+button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+@media(max-width:800px){.cols{grid-template-columns:1fr}.key{columns:1}.slide::after{right:5vw;bottom:7vh}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<g fill="none" stroke="currentColor" stroke-width="1.6">
+<symbol id="shoebox" viewBox="0 0 60 40"><rect x="6" y="8" width="50" height="24"/><rect x="6" y="8" width="8" height="24" fill="currentColor" fill-opacity=".4"/></symbol>
+<symbol id="vineyard" viewBox="0 0 60 40"><ellipse cx="30" cy="20" rx="25" ry="17"/><ellipse cx="30" cy="20" rx="15" ry="9.5"/><rect x="24" y="16" width="12" height="8" fill="currentColor" fill-opacity=".4"/></symbol>
+<symbol id="fan" viewBox="0 0 60 40"><polygon points="14,15 14,25 56,37 56,3"/><rect x="5" y="15" width="9" height="10" fill="currentColor" fill-opacity=".4"/></symbol>
+<symbol id="horseshoe" viewBox="0 0 60 40"><path d="M16 6H38A14 14 0 0 1 38 34H16"/><path d="M16 12H37A8 8 0 0 1 37 28H16"/><rect x="5" y="14" width="11" height="12" fill="currentColor" fill-opacity=".4"/></symbol>
+</g></svg>
+
+<section class="slide on" data-wiki="reverberation-time" data-sources="S2, S7">
+<h1>Why does the shape of a room change how music sounds?</h1>
+<p class="big">An introduction to concert hall types</p>
+<p>A large gothic cathedral can take up to 9 seconds for sound to die away. A small conference room lets it fade almost at once. Good concert halls aim in between, at roughly 2 seconds.</p>
+<p class="note">Built from a source-tagged LLM Wiki. Every slide names its Wiki page and sources in the footer. Press the right arrow to begin.</p>
+</section>
+
+<section class="slide" data-wiki="reflection-diffusion" data-sources="S12, S4, S7">
+<h2>Sound bounces</h2>
+<ul>
+<li>Think of sound as rays that bounce off surfaces: the angle it arrives at equals the angle it leaves at.</li>
+<li>Curved-in (concave) surfaces tend to focus sound into hot spots. Curved-out (convex) surfaces spread it.</li>
+<li>A designer wants even sound at every seat, so they look for places where rays converge and reshape the room.</li>
+<li>An echo is a reflection that arrives late enough to be heard separately from the direct sound.</li>
+<li>Suspended reflectors are angled to send sound to different parts of the audience.</li>
+</ul>
+</section>
+
+<section class="slide" data-wiki="reverberation-time" data-sources="S2, S7, S10, S11">
+<h2>Reverberation time: how long sound lingers</h2>
+<div class="cols"><ul>
+<li>Reverberation time (RT) is how long sound takes to drop by 60 decibels after the source stops.</li>
+<li>A very reverberant room sounds “live”; one with little reverberation sounds “dead”.</li>
+<li>Longer RT makes music fuller but speech muddier.</li>
+<li>Wallace Sabine began measuring it at Harvard in 1895.</li>
+</ul>
+<div class="scroll"><table><tr><th>Space</th><th>Typical RT</th></tr>
+<tr><td>Symphonic music</td><td>1.7–2.3 s</td></tr>
+<tr><td>Shoebox halls</td><td>about 2 s</td></tr>
+<tr><td>Horseshoe opera houses</td><td>about 1.5 s</td></tr>
+<tr><td>Lecture halls</td><td>just under 1 s</td></tr></table></div></div>
+<p class="note">Targets depend on the type of hall and what it is used for.</p>
+</section>
+
+<section class="slide" data-wiki="clarity-and-envelopment" data-sources="S7, S10, S3">
+<h2>Clear sound and surrounding sound</h2>
+<ul>
+<li>Clarity compares sound arriving in the first 80 milliseconds with the later sound. Late reflections blur the music, so clarity tends to fall as RT rises.</li>
+<li>Spaciousness: sound arriving from the sides makes the source seem wider than it is. A lateral energy fraction above 0.25 is recommended.</li>
+<li>Envelopment: listeners feel surrounded when many early side reflections arrive before the 80 ms mark.</li>
+<li>That is why symphonic halls prioritise side reflections, and one reason rectangular halls are favoured.</li>
+<li>In Vienna’s Musikverein, the narrow shape and thick plaster walls give strong side reflections.</li>
+</ul>
+<p class="note">Much of this research was done on classical music, not pop or rock.</p>
+</section>
+
+<section class="slide" data-wiki="overview" data-sources="S10, S4, S7, S6">
+<h2>Four basic shapes</h2>
+<div class="four">
+<div><svg class="plan"><use href="#shoebox"/></svg><h3>Shoebox</h3><p>A long rectangle with the stage at one end.</p><p>Musikverein, Vienna</p></div>
+<div><svg class="plan"><use href="#vineyard"/></svg><h3>Vineyard</h3><p>Terraced seating surrounds the stage.</p><p>Berlin Philharmonie</p></div>
+<div><svg class="plan"><use href="#fan"/></svg><h3>Fan-shaped</h3><p>Walls open outward from the stage.</p><p>Barbican, London</p></div>
+<div><svg class="plan"><use href="#horseshoe"/></svg><h3>Horseshoe</h3><p>A U-shaped plan with tiers of boxes.</p><p>Teatro alla Scala, Milan</p></div>
+</div>
+<p class="note">Sources do not agree on the list of “basic” shapes. One lists three (shoebox, fan, vineyard), another adds “arena”, and a research paper uses these four. This deck follows the paper. Schematic plans, not to scale; the shaded block is the stage.</p>
+</section>
+
+<section class="slide" data-wiki="shoebox, musikverein" data-sources="S3, S4, S7, S10, S1">
+<h2>Shoebox: Musikverein, Vienna</h2>
+<div class="cols"><ul>
+<li>Shape: a plain rectangle with the stage at one end, often with balconies.</li>
+<li>Sound: RT of about 2 s, high clarity, and a feeling of being immersed in sound from all directions.</li>
+<li>Why: many early side reflections arrive between the direct sound and 80 ms.</li>
+<li>Catch: parallel walls can cause flutter echoes unless something scatters the sound. Statues along the sides do this in Vienna.</li>
+<li>Case study: opened 6 January 1870, designed by Theophil Hansen, with 1,744 seats plus standing room for about 300. Hansen relied on intuition because no acoustics studies existed.</li>
+</ul>
+<figure><svg class="plan"><use href="#shoebox"/></svg><figcaption>Schematic plan, not to scale.</figcaption></figure></div>
+</section>
+
+<section class="slide" data-wiki="vineyard, berlin-philharmonie" data-sources="S1, S4, S7, S8, S10">
+<h2>Vineyard: Berlin Philharmonie</h2>
+<div class="cols"><ul>
+<li>Shape: the audience sits on terraces rising around a central stage, like the slopes of a vineyard.</li>
+<li>Idea: its architect reasoned that people naturally gather in circles to listen to music.</li>
+<li>Case study: opened in 1963, designed by Hans Scharoun, with 2,440 seats.</li>
+<li>Problem: on an open platform, musicians struggled to hear each other. Fixes: reflective surfaces around the platform and ten curved “clouds” hung 12 m above it.</li>
+<li>Strengths: holds many people, RT near the symphonic ideal, and an irregular layout that avoids flutter echoes.</li>
+<li>Costs: complicated and expensive, and sound varies a lot by seat.</li>
+</ul>
+<figure><svg class="plan"><use href="#vineyard"/></svg><figcaption>Schematic plan, not to scale.</figcaption></figure></div>
+</section>
+
+<section class="slide" data-wiki="weiwuying" data-sources="S1, S4, S9">
+<h2>A vineyard hall in Taiwan: Weiwuying</h2>
+<div class="cols"><ul>
+<li>Location: Kaohsiung, in the National Kaohsiung Center for the Arts. Opened in 2018, with about 2,000 seats in the concert hall.</li>
+<li>A vineyard-style hall by architect Francine Houben, with acoustics by Albert Yaying Xu.</li>
+<li>Its design kept RT between 2.1 s (mid frequencies) and 2.52 s (low frequencies).</li>
+<li>Side walls, ceiling height, materials, seating and stage were all designed with acoustics in mind.</li>
+</ul>
+<figure><svg class="plan"><use href="#vineyard"/></svg><figcaption>Schematic plan, not to scale.</figcaption></figure></div>
+<p class="note">No source in this Wiki describes the shape of Taipei’s National Concert Hall, so it is not classified here.</p>
+</section>
+
+<section class="slide" data-wiki="fan-shaped" data-sources="S4, S7, S10">
+<h2>Fan-shaped: many seats, front-facing</h2>
+<div class="cols"><ul>
+<li>Shape: the side walls open outward from the stage into a fan.</li>
+<li>Why: it seats many people who all keep a frontal view of the performers.</li>
+<li>Strengths: non-parallel walls avoid flutter echoes, and direct sound reaches the audience easily.</li>
+<li>Weaknesses: RT is generally low, clarity can be very low, ensemble is hard for musicians, and a curved back wall can cause echoes.</li>
+<li>Sources disagree on spaciousness: one says the wide rear gives it, another says there is little side energy so listeners do not feel surrounded.</li>
+<li>Examples: Barbican Hall in London, and Tanglewood Music Shed in Massachusetts, which is fan-shaped yet acoustically successful thanks to reflective upper panels.</li>
+</ul>
+<figure><svg class="plan"><use href="#fan"/></svg><figcaption>Schematic plan, not to scale.</figcaption></figure></div>
+</section>
+
+<section class="slide" data-wiki="horseshoe, la-scala" data-sources="S6, S10">
+<h2>Horseshoe: La Scala, Milan</h2>
+<div class="cols"><ul>
+<li>Shape: a U-shaped plan with several tiers of boxes, a pattern common in late 18th-century Italian theatres.</li>
+<li>La Scala: the architect Giuseppe Piermarini built a plaster vault on wooden ribs with a gap above it, making a hollow space like the body of an instrument.</li>
+<li>Sound: RT of about 1.5 s whatever the size, good balance between orchestra pit and stage, and high clarity.</li>
+</ul>
+<figure><svg class="plan"><use href="#horseshoe"/></svg><figcaption>Schematic plan, not to scale.</figcaption></figure></div>
+<p class="note">Both sources on this type are about opera houses, so this is evidence for opera rather than symphony halls.</p>
+</section>
+
+<section class="slide" data-wiki="overview, shoebox, fan-shaped" data-sources="S10, S7">
+<h2>Shape is a tendency, not a guarantee</h2>
+<div class="scroll"><table>
+<tr><th>Type</th><th>Reverberation</th><th>Strength</th><th>Weakness</th></tr>
+<tr><td>Shoebox</td><td>about 2 s</td><td>High clarity, enveloping</td><td>Flutter echoes if walls stay plain</td></tr>
+<tr><td>Vineyard</td><td>near symphonic ideal</td><td>Many seats, irregular layout</td><td>Costly; sound varies by seat</td></tr>
+<tr><td>Fan-shaped</td><td>generally low</td><td>Frontal view, no flutter echo</td><td>Low clarity, little side energy</td></tr>
+<tr><td>Horseshoe</td><td>about 1.5 s</td><td>High clarity, pit–stage balance</td><td>Evidence is from opera houses</td></tr></table></div>
+<p class="note">A roughly rectangular hall designed in 1962 sounded flat and too bright, while the fan-shaped Tanglewood hall turned out acoustically successful.</p>
+</section>
+
+<section class="slide" data-wiki="sources, conflicts" data-sources="S1, S2, S3, S4, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16">
+<h2>Where this came from, and what we corrected</h2>
+<ul>
+<li>Philharmonie de Paris: two sources said 2014. It opened on 14 January 2015.</li>
+<li>DR Concert Hall, Copenhagen: one source said 2006. It opened on 17 January 2009.</li>
+<li>Berlin Philharmonie seats: 2,440 is used here; one acoustic calculation uses 2,250, and the reason is unresolved.</li>
+</ul>
+<div class="key">
+S1 Wikipedia, List of concert halls<br>S2 concerthalls.org, Reverberation<br>S3 Wikipedia, Musikverein<br>S4 Wikipedia, Vineyard style<br>S6 Filarmonica della Scala, Il Teatro<br>S7 ODEON, Concert hall acoustics<br>S8 Berliner Philharmoniker, Sounding Space<br>S9 Weiwuying Learning, Arts Talk<br>S10 Farina (2016), ISMRA conference paper<br>S11 Wikipedia, Wallace Clement Sabine<br>S12 concerthalls.org, Room Shape<br>S13–S16 opening-date checks: Wikipedia (Paris), Philharmonie press release, Wikipedia (Copenhagen), lex.dk
+</div>
+</section>
+
+<nav><button id="prev" aria-label="Previous slide">Back</button><span id="ctr"></span><button id="next" aria-label="Next slide">Next</button></nav>
+<script>
+const S=[...document.querySelectorAll('.slide')];let i=0;
+function go(k){i=Math.max(0,Math.min(S.length-1,k));S.forEach((s,j)=>s.classList.toggle('on',j===i));ctr.textContent=(i+1)+' / '+S.length;try{history.replaceState(null,'','#'+(i+1))}catch(e){}S[i].scrollTop=0}
+prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown'].includes(e.key)){go(i+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){go(i-1)}});
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
